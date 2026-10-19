@@ -201,7 +201,7 @@
                 {
                   "$type": "Models.PMF.Phen.GenericPhase, Models",
                   "Start": "Dormancy",
-                  "End": "StartGrowth",
+                  "End": "Waiting",
                   "IsEmerged": false,
                   "Name": "Dormant",
                   "ResourceName": null,
@@ -259,6 +259,40 @@
                           "$type": "Models.Functions.VariableReference, Models",
                           "VariableName": "[DEROPAPY].Phenology.Chill",
                           "Name": "XValue",
+                          "ResourceName": null,
+                          "Children": [],
+                          "Enabled": true,
+                          "ReadOnly": false
+                        }
+                      ],
+                      "Enabled": true,
+                      "ReadOnly": false
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.PMF.Phen.StartGrowthPhase, Models",
+                  "Start": "Waiting",
+                  "End": "StartGrowth",
+                  "IsEmerged": false,
+                  "DOYtoProgress": 0,
+                  "TemptoProgress": 0,
+                  "Name": "Waiting",
+                  "ResourceName": null,
+                  "Children": [
+                    {
+                      "$type": "Models.Functions.MovingAverageFunction, Models",
+                      "NumberOfDays": 14,
+                      "StageToStartMovingAverage": "Waiting",
+                      "Name": "MovingAverageTemp",
+                      "ResourceName": null,
+                      "Children": [
+                        {
+                          "$type": "Models.Functions.VariableReference, Models",
+                          "VariableName": "[Weather].MeanT",
+                          "Name": "VariableReference",
                           "ResourceName": null,
                           "Children": [],
                           "Enabled": true,
@@ -664,7 +698,7 @@
                     {
                       "$type": "Models.Functions.AccumulateFunction, Models",
                       "StartStageName": "Dormancy",
-                      "EndStageName": "StartGrowth",
+                      "EndStageName": "Waiting",
                       "ResetStageName": "StartGrowth",
                       "FractionRemovedOnCut": 0.0,
                       "FractionRemovedOnHarvest": 0.0,
@@ -945,7 +979,7 @@
                   "$type": "Models.Functions.AccumulateFunction, Models",
                   "StartStageName": "StartGrowth",
                   "EndStageName": "Maturity",
-                  "ResetStageName": "StartGrowth",
+                  "ResetStageName": "Waiting",
                   "FractionRemovedOnCut": 0.0,
                   "FractionRemovedOnHarvest": 0.0,
                   "FractionRemovedOnGraze": 0.0,
@@ -86224,18 +86258,6 @@
                       ],
                       "CustomDescriptors": [],
                       "Name": "Lowbush",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    },
-                    {
-                      "$type": "Models.Factorial.CompositeFactor, Models",
-                      "Specifications": [
-                        "[ThisDero].CurrentCropName =  Blueberry_Northern_Highbush_NZ"
-                      ],
-                      "CustomDescriptors": [],
-                      "Name": "NorthernHighbush",
                       "ResourceName": null,
                       "Children": [],
                       "Enabled": true,
