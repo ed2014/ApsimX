@@ -95937,7 +95937,7 @@
                   "CrossesAtZero": false,
                   "LabelOnOneLine": false,
                   "Minimum": "NaN",
-                  "Maximum": 5000.0,
+                  "Maximum": "NaN",
                   "Interval": "NaN"
                 },
                 {
@@ -96005,7 +96005,7 @@
                   "CrossesAtZero": false,
                   "LabelOnOneLine": false,
                   "Minimum": "NaN",
-                  "Maximum": 3000.0,
+                  "Maximum": "NaN",
                   "Interval": "NaN"
                 },
                 {
@@ -96073,7 +96073,7 @@
                   "CrossesAtZero": false,
                   "LabelOnOneLine": false,
                   "Minimum": "NaN",
-                  "Maximum": 3000.0,
+                  "Maximum": "NaN",
                   "Interval": "NaN"
                 },
                 {
