@@ -123,9 +123,6 @@ namespace Models.PMF.SimplePlantModels
         [Link(Type = LinkType.Scoped)]
         private EnergyBalance canopy = null;
 
-        [Link(Type = LinkType.Scoped, ByName = true)]
-        private Organ leaf = null;
-
         [Link(Type = LinkType.Ancestor)]
         private Zone zone = null;
 
@@ -303,34 +300,6 @@ namespace Models.PMF.SimplePlantModels
             HasStartedGrowthhisSeason = false;
         }
 
-        /// <summary>
-        /// Procedures that occur when new growth cycle starts.  initial biomass etc
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        [EventSubscribe("NewGrowthPhaseStarting")]
-        private void onStartNewGrowthCycle(object sender, EventArgs e)
-        {
-            //Reset leaf biomass so it is ready for new growth
-            if (CurrentCropParams["DefoliateOrDevelop"] == "FullCover")
-            {
-                leaf.initialiseBiomass();
-                HasRewondThisSeason = false;
-                HasStartedGrowthhisSeason = true;
-            }
-        }
-
-        /// <summary>
-        /// Procedures that occur for crops that go into the Graze Phase
-        /// </summary>
-        /// <param name="e"></param>
-        /// <param name="sender"></param>
-        [EventSubscribe("Grazing")]
-        private void onGrazing(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         /// <summary>
@@ -347,10 +316,7 @@ namespace Models.PMF.SimplePlantModels
             thisDero["CropType"] += clean(CurrentCropParams["CropType"]);
             thisDero["TT_Temp_X"] += clean(CurrentCropParams["TT_Temp_X"]);
             thisDero["TT_Acc_Y"] += clean(CurrentCropParams["TT_Acc_Y"]);
-            thisDero["D_StartGrowth_00"] += clean(CurrentCropParams["D_StartGrowth_00"]);
-            thisDero["T_StartGrowth_00"] += clean(CurrentCropParams["T_StartGrowth_00"]);
             thisDero["Tt_Growing_01"] += clean(CurrentCropParams["Tt_Growing_01"]);
-            thisDero["DefoliateOrDevelop"] += clean(CurrentCropParams["DefoliateOrDevelop"]);
             thisDero["Pp_FullCover_02"] += clean(CurrentCropParams["Pp_FullCover_02"]);
             thisDero["Tt_FullCover_02"] += clean(CurrentCropParams["Tt_FullCover_02"]);
             thisDero["Tt_Senescent_03"] += clean(CurrentCropParams["Tt_Senescent_03"]);
@@ -374,7 +340,6 @@ namespace Models.PMF.SimplePlantModels
             thisDero["SeasonalDimensionPattern"] += clean(CurrentCropParams["SeasonalDimensionPattern"]);
             thisDero["Gsmax350"] += clean(CurrentCropParams["Gsmax350"]);
             thisDero["R50"] += clean(CurrentCropParams["R50"]);
-            thisDero["RelSlowLAI"] += clean(CurrentCropParams["RelSlowLAI"]);
             thisDero["LAIbase"] += clean(CurrentCropParams["LAIbase"]);
             thisDero["LAIbaseInitial"] += clean(CurrentCropParams["LAIbase"]);
             thisDero["LAIAnnualGrowth"] += clean(CurrentCropParams["LAIAnnualGrowth"]);
@@ -465,10 +430,7 @@ namespace Models.PMF.SimplePlantModels
             {"CropType","[DEROPAPY].PlantType = " },
             {"TT_Temp_X","[DEROPAPY].Phenology.ThermalTime.XYPairs.X = " },
             {"TT_Acc_Y","[DEROPAPY].Phenology.ThermalTime.XYPairs.Y = " },
-            {"D_StartGrowth_00","[DEROPAPY].Phenology.Waiting.DOYtoProgress = " },
-            {"T_StartGrowth_00","[DEROPAPY].Phenology.Waiting.TemptoProgress = " },
             {"Tt_Growing_01","[DEROPAPY].Phenology.Growing.Target.FixedValue = " },
-            {"DefoliateOrDevelop","[DEROPAPY].Phenology.DefoliateOrDevelop.PhaseNameToGoto = "},
             {"Pp_FullCover_02","[DEROPAPY].Phenology.FullCover.Target.XYPairs.X = " },
             {"Tt_FullCover_02","[DEROPAPY].Phenology.FullCover.Target.XYPairs.Y = " },
             {"Tt_Senescent_03","[DEROPAPY].Phenology.Senescent.Target.FixedValue = " },
@@ -476,8 +438,8 @@ namespace Models.PMF.SimplePlantModels
             {"EndOrHarvest"," [DEROPAPY].Phenology.EndOrHarvest.PhaseNameToGoto = " },
             {"Chill_Temp_X","[DEROPAPY].Phenology.DailyChill.XYPairs.X = " },
             {"Chill_Acc_Y","[DEROPAPY].Phenology.DailyChill.XYPairs.Y = "},
-            {"AC_Dormant_05","[DEROPAPY].Phenology.Dormant.Target.XYPairs.X = " },
-            {"Tt_Dormant_05","[DEROPAPY].Phenology.Dormant.Target.XYPairs.Y = " },
+            {"AC_Dormant_05","[DEROPAPY].Phenology.EndoDormancy.Target.Target.XYPairs.X = " },
+            {"Tt_Dormant_05","[DEROPAPY].Phenology.EndoDormancy.Target.Target.XYPairs.Y = " },
             {"VegetativeStartStage","[DEROPAPY].Phenology.Vegetative.StartStage = "},
             {"Pp_Vegetative","[DEROPAPY].Phenology.Vegetative.Target.XYPairs.X = " },
             {"Tt_Vegetative","[DEROPAPY].Phenology.Vegetative.Target.XYPairs.Y = " },
@@ -492,7 +454,6 @@ namespace Models.PMF.SimplePlantModels
             {"SeasonalDimensionPattern","[DEROPAPY].RelativeSeasonalDimension.XYPairs.Y = " },
             {"Gsmax350", "[DEROPAPY].Leaf.Canopy.Gsmax350 = " },
             {"R50", "[DEROPAPY].Leaf.Canopy.R50 = " },
-            {"RelSlowLAI",  "[DEROPAPY].Leaf.Canopy.ExpandedGreenArea.Expansion.Delta.Integral.GrowthPattern.XYPairs.X[2] = "},
             {"LAIbase","[DEROPAPY].Leaf.Canopy.GreenAreaIndex.WinterBase.PrunThreshold.FixedValue = " },
             {"LAIbaseInitial", "[DEROPAPY].Leaf.Canopy.GreenAreaIndex.WinterBase.GAICarryover.PreEventValue.FixedValue = "},
             {"LAIAnnualGrowth","[DEROPAPY].Leaf.Canopy.ExpandedGreenArea.Expansion.Delta.Integral.LAIAnnualGrowth.FixedValue = " },
@@ -526,8 +487,8 @@ namespace Models.PMF.SimplePlantModels
             {"WaterStressLAISenes_X", "[DEROPAPY].Leaf.Canopy.DeadAreaIndex.DroughtedLAI.DailyDroughtSenescence.WaterStressFactor.XYPairs.X = " },
             {"WaterStressLAISenes_Y", "[DEROPAPY].Leaf.Canopy.DeadAreaIndex.DroughtedLAI.DailyDroughtSenescence.WaterStressFactor.XYPairs.Y = " },
             {"FlowerNumberMax","[DEROPAPY].Product.FlowerNumber.Maximum.FixedValue = " },
-            {"FlowerMaxTempStress_Temp_X","[DEROPAPY].Product.FlowerNumber.StressDuringFlowering.MaxTempStress.XYPairs.X = " },
-            {"FlowerMaxTempStress_Factor_Y","[DEROPAPY].Product.FlowerNumber.StressDuringFlowering.MaxTempStress.XYPairs.Y = " },
+            {"FlowerMaxTempStress_Temp_X","[DEROPAPY].Product.FlowerNumber.StressDuringDormancy.MaxTempStress.XYPairs.X = " },
+            {"FlowerMaxTempStress_Factor_Y","[DEROPAPY].Product.FlowerNumber.StressDuringDormancy.MaxTempStress.XYPairs.Y = " },
             {"FlowerMinTempStress_Temp_X","[DEROPAPY].Product.FlowerNumber.StressDuringFlowering.MinTempStress.XYPairs.X = " },
             {"FlowerMinTempStress_Factor_Y","[DEROPAPY].Product.FlowerNumber.StressDuringFlowering.MinTempStress.XYPairs.Y = " },
             {"ProduceDryMatterFrac","[DEROPAPY].Product.FreshWeight.DryMatterProportion.FixedValue = " },
