@@ -2795,10 +2795,10 @@
                         {
                           "$type": "Models.Functions.XYPairs, Models",
                           "X": [
-                            0.0,
-                            14.100662607203542,
-                            30.0,
-                            45.0
+                            5.0,
+                            10.0,
+                            32.0,
+                            40.0
                           ],
                           "Y": [
                             0.0,
@@ -86497,11 +86497,15 @@
       "$type": "Models.Factorial.Experiment, Models",
       "DisabledSimNames": [
         "Blueberry_PhenoTestCropNorthernHighbushLocationNelsonIrrigationIrrig",
+        "Blueberry_PhenoTestCropNorthernHighbushLocationLincolnIrrigationIrrig",
+        "Blueberry_PhenoTestCropSouthernHighbushLocationLincolnIrrigationIrrig",
+        "Blueberry_PhenoTestCropSouthernHighbushLocationNelsonIrrigationIrrig",
+        "Blueberry_PhenoTestCropSouthernHighbushLocationNelsonIrrigationRain",
+        "Blueberry_PhenoTestCropSouthernHighbushLocationLincolnIrrigationRain",
         "Blueberry_PhenoTestCropNorthernHighbushLocationGisborneIrrigationRain",
         "Blueberry_PhenoTestCropNorthernHighbushLocationGisborneIrrigationIrrig",
         "Blueberry_PhenoTestCropNorthernHighbushLocationTe PukeIrrigationRain",
         "Blueberry_PhenoTestCropNorthernHighbushLocationKerikeriIrrigationRain",
-        "Blueberry_PhenoTestCropNorthernHighbushLocationLincolnIrrigationIrrig",
         "Blueberry_PhenoTestCropNorthernHighbushLocationTe PukeIrrigationIrrig",
         "Blueberry_PhenoTestCropNorthernHighbushLocationKerikeriIrrigationIrrig"
       ],
@@ -87235,8 +87239,8 @@
                       "PlantName": "DEROPAPY",
                       "OrganName": "Leaf",
                       "TypeString": "Cutting",
-                      "LiveToRemove": 0.0,
-                      "DeadToRemove": 0.0,
+                      "LiveToRemove": 1.0,
+                      "DeadToRemove": 1.0,
                       "LiveToResidue": 0.0,
                       "DeadToResidue": 0.0
                     },
@@ -90039,7 +90043,7 @@
                   "Name": "EventNamesOnGraph",
                   "ResourceName": null,
                   "Children": [],
-                  "Enabled": true,
+                  "Enabled": false,
                   "ReadOnly": false
                 }
               ],
@@ -93955,7 +93959,7 @@
                       "Name": "EventNamesOnGraph",
                       "ResourceName": null,
                       "Children": [],
-                      "Enabled": true,
+                      "Enabled": false,
                       "ReadOnly": false
                     }
                   ],
@@ -94255,9 +94259,9 @@
                   "XAxis": 3,
                   "YAxis": 2,
                   "ColourArgb": -16747854,
-                  "FactorToVaryColours": "Location",
+                  "FactorToVaryColours": "SimulationName",
                   "FactorToVaryMarkers": null,
-                  "FactorToVaryLines": "Irrigation",
+                  "FactorToVaryLines": null,
                   "Marker": 11,
                   "MarkerSize": 0,
                   "Line": 0,
@@ -94272,7 +94276,7 @@
                   "Cumulative": false,
                   "CumulativeX": false,
                   "Filter": null,
-                  "Name": "Stage",
+                  "Name": "FrostFraction",
                   "ResourceName": null,
                   "Children": [
                     {
@@ -94294,13 +94298,13 @@
                   "Type": 1,
                   "XAxis": 3,
                   "YAxis": 0,
-                  "ColourArgb": -16744448,
-                  "FactorToVaryColours": "Crop",
+                  "ColourArgb": -11094807,
+                  "FactorToVaryColours": null,
                   "FactorToVaryMarkers": null,
-                  "FactorToVaryLines": "Irrigation",
+                  "FactorToVaryLines": "SimulationName",
                   "Marker": 11,
                   "MarkerSize": 0,
-                  "Line": 0,
+                  "Line": 4,
                   "LineThickness": 0,
                   "TableName": "Report",
                   "XFieldName": "Clock.Today",
@@ -96561,8 +96565,8 @@
                       "PlantName": "DEROPAPY",
                       "OrganName": "Leaf",
                       "TypeString": "Cutting",
-                      "LiveToRemove": 0.0,
-                      "DeadToRemove": 0.0,
+                      "LiveToRemove": 1.0,
+                      "DeadToRemove": 1.0,
                       "LiveToResidue": 0.0,
                       "DeadToResidue": 0.0
                     },
@@ -97408,9 +97412,9 @@
                   "XAxis": 3,
                   "YAxis": 0,
                   "ColourArgb": -16744448,
-                  "FactorToVaryColours": "SimulationName",
-                  "FactorToVaryMarkers": null,
-                  "FactorToVaryLines": null,
+                  "FactorToVaryColours": "Crop",
+                  "FactorToVaryMarkers": "Crop",
+                  "FactorToVaryLines": "Crop",
                   "Marker": 11,
                   "MarkerSize": 1,
                   "Line": 0,
